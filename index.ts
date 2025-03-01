@@ -28,3 +28,20 @@ let error = (error: string):string => {
 let errlog = (error: string):void =>{
     throw new Error(error);
 }
+
+// type aliases
+
+type User = {
+    name : string;
+    age : number;
+}
+
+// type myString = string 
+
+function login(user: User){
+    return user.name;
+}
+
+// Union 
+let password: number | string = 12
+password = "amar"
