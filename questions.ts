@@ -597,4 +597,132 @@ reverseString("1234");
 reverseString(Number(1234)); 
 
 
+//[{a:3},{a:3},{a:3},{a:3},{a:3}]
+
+type item = {a:number }
+let items: item[] = [{a:3},{a:3},{a:3},{a:3},{a:3}];
+let sum = items.reduce((acc , obj) => acc + obj.a , 0)
+console.log('sum is ' , sum)
+
+// interface implementation
+interface User {
+    name: string,
+    email: string
+}
+
+const user: User = {
+    name: 'amar',
+    email:'sfdsdf@gmail.com'
+}
+
+type Usertype = {
+    readonly id: number,
+    email: string
+}
+
+const user1 : Usertype = {
+    id:11121,
+    email:'sdfsdaf'
+}
+
+
+/// tuples 
+let tuple :[string , number];
+tuple = ['fsadfsadf' , 8];
+
+
+// promise 
+
+// function getData(success: boolean): Promise<string | boolean>{
+//     return new Promise((res , rej) => {
+//         if(success){
+//             res('data successfully fetched')
+//         } else{
+//             rej(false);
+//         }
+//     })
+// }
+
+// getData(true)
+//     .then((mes)=> console.log('resolved' , mes))
+//     .catch((err)=> console.log('error' , err))
+
+
+// Generics
+function getValue<T>(value: T):T{
+    return value
+}
+
+console.log(getValue<string>('hello'))
+
+
+function add<T extends number>(a: T, b: T): number {
+    return a + b;
+}
+
+console.log(add(5, 10));
+
+
+class Animal{
+    protected name: string
+    constructor(name : string){
+        this.name = name
+    }
+}
+
+class dog extends Animal{
+    sound(): void{
+        console.log(`Sound of ${this.name}`)
+    }
+}
+
+abstract class Vehicle{
+    abstract speed():void;
+    sound():void{
+        console.log('this is the sound ')
+    }
+}
+
+class car extends Vehicle{
+    speed(): void {
+        console.log('speeed is 10000')
+    }
+}
+
+let Car = new car()
+Car.sound()
+Car.speed()
+
+let Dog = new dog('dog')
+Dog.sound()
+
+class Shape{
+    area(n: number):number{
+        return n
+    }
+}
+
+class rectangle extends Shape{
+    area(n: number): number {
+        return n * 2
+    }
+}
+
+function Log(target: any, key: string) {
+    console.log(`Property "${key}" was accessed.`);
+}
+
+// class User1 {
+//     @Log
+//     name: string = "Alice";
+// }
+
+// const users = new User1();
+// console.log(users.name);
+
+
+
+
+
+
 export {}

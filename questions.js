@@ -1,4 +1,53 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
+    function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
+    var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
+    var target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
+    var descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
+    var _, done = false;
+    for (var i = decorators.length - 1; i >= 0; i--) {
+        var context = {};
+        for (var p in contextIn) context[p] = p === "access" ? {} : contextIn[p];
+        for (var p in contextIn.access) context.access[p] = contextIn.access[p];
+        context.addInitializer = function (f) { if (done) throw new TypeError("Cannot add initializers after decoration has completed"); extraInitializers.push(accept(f || null)); };
+        var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
+        if (kind === "accessor") {
+            if (result === void 0) continue;
+            if (result === null || typeof result !== "object") throw new TypeError("Object expected");
+            if (_ = accept(result.get)) descriptor.get = _;
+            if (_ = accept(result.set)) descriptor.set = _;
+            if (_ = accept(result.init)) initializers.unshift(_);
+        }
+        else if (_ = accept(result)) {
+            if (kind === "field") initializers.unshift(_);
+            else descriptor[key] = _;
+        }
+    }
+    if (target) Object.defineProperty(target, contextIn.name, descriptor);
+    done = true;
+};
+var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
+    var useValue = arguments.length > 2;
+    for (var i = 0; i < initializers.length; i++) {
+        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
+    }
+    return useValue ? value : void 0;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 // let charInput: string = readlineSync.question('Enter a character : ');
 // console.log('You have entered : ' , charInput);
@@ -443,19 +492,134 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // displayReadingStatus(library);
 function reverseString(my_string) {
     try {
-        // Attempt to reverse the string
         var reversed = my_string.split("").reverse().join("");
         console.log("Reversed string is : ".concat(reversed));
     }
     catch (err) {
-        // Catch block for handling errors
         console.log("Error : ".concat(err.message));
     }
     finally {
-        // Finally block to print type of variable
         console.log("Type of my_string is : ".concat(typeof my_string));
     }
 }
 // Test cases
-reverseString("1234"); // Valid string input
-reverseString(Number(1234)); // Invalid case: number instead of string
+reverseString("1234");
+reverseString(Number(1234));
+var items = [{ a: 3 }, { a: 3 }, { a: 3 }, { a: 3 }, { a: 3 }];
+var sum = items.reduce(function (acc, obj) { return acc + obj.a; }, 0);
+console.log('sum is ', sum);
+var user = {
+    name: 'amar',
+    email: 'sfdsdf@gmail.com'
+};
+var user1 = {
+    id: 11121,
+    email: 'sdfsdaf'
+};
+/// tuples 
+var tuple;
+tuple = ['fsadfsadf', 8];
+// promise 
+// function getData(success: boolean): Promise<string | boolean>{
+//     return new Promise((res , rej) => {
+//         if(success){
+//             res('data successfully fetched')
+//         } else{
+//             rej(false);
+//         }
+//     })
+// }
+// getData(true)
+//     .then((mes)=> console.log('resolved' , mes))
+//     .catch((err)=> console.log('error' , err))
+// Generics
+function getValue(value) {
+    return value;
+}
+console.log(getValue('hello'));
+function add(a, b) {
+    return a + b;
+}
+console.log(add(5, 10));
+var Animal = /** @class */ (function () {
+    function Animal(name) {
+        this.name = name;
+    }
+    return Animal;
+}());
+var dog = /** @class */ (function (_super) {
+    __extends(dog, _super);
+    function dog() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    dog.prototype.sound = function () {
+        console.log("Sound of ".concat(this.name));
+    };
+    return dog;
+}(Animal));
+var Vehicle = /** @class */ (function () {
+    function Vehicle() {
+    }
+    Vehicle.prototype.sound = function () {
+        console.log('this is the sound ');
+    };
+    return Vehicle;
+}());
+var car = /** @class */ (function (_super) {
+    __extends(car, _super);
+    function car() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    car.prototype.speed = function () {
+        console.log('speeed is 10000');
+    };
+    return car;
+}(Vehicle));
+var Car = new car();
+Car.sound();
+Car.speed();
+var Dog = new dog('dog');
+Dog.sound();
+var Shape = /** @class */ (function () {
+    function Shape() {
+    }
+    Shape.prototype.area = function (n) {
+        return n;
+    };
+    return Shape;
+}());
+var rectangle = /** @class */ (function (_super) {
+    __extends(rectangle, _super);
+    function rectangle() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    rectangle.prototype.area = function (n) {
+        return n * 2;
+    };
+    return rectangle;
+}(Shape));
+function Log(target, key) {
+    console.log("Property \"".concat(key, "\" was accessed."));
+}
+var User1 = function () {
+    var _a;
+    var _name_decorators;
+    var _name_initializers = [];
+    var _name_extraInitializers = [];
+    return _a = /** @class */ (function () {
+            function User1() {
+                this.name = __runInitializers(this, _name_initializers, "Alice");
+                __runInitializers(this, _name_extraInitializers);
+            }
+            return User1;
+        }()),
+        (function () {
+            var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+            _name_decorators = [Log];
+            __esDecorate(null, null, _name_decorators, { kind: "field", name: "name", static: false, private: false, access: { has: function (obj) { return "name" in obj; }, get: function (obj) { return obj.name; }, set: function (obj, value) { obj.name = value; } }, metadata: _metadata }, _name_initializers, _name_extraInitializers);
+            if (_metadata) Object.defineProperty(_a, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
+        })(),
+        _a;
+}();
+var users = new User1();
+console.log(users.name);
